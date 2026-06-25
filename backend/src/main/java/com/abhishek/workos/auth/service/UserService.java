@@ -3,6 +3,8 @@ import com.abhishek.workos.auth.entity.User;
 import java.util.List;
 import com.abhishek.workos.auth.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import com.abhishek.workos.auth.dto.RegisterRequest;
+
 
 
 @Service // to notify spring this is service class
@@ -16,11 +18,26 @@ public class UserService {
             System.out.println("UserService Bean Created");
             System.out.println(userRepository);
         }
-        public void getAllUsers() {
+        public List<User> getAllUsers() {
 
-            List<User> users = userRepository.findAll();
+            return userRepository.findAll();
 
-            System.out.println(users);
         }
+
+        public String register(RegisterRequest request) {
+            if (userRepository.existsByEmail(request.getEmail())) {
+                return "Email already exists";
+            }
+
+            User user = new User();
+
+            user.setName(request.getName());
+            user.setEmail(request.getEmail());
+            user.setPassword(request.getPassword());
+
+            userRepository.save(user);
+            return "User Registred";
+        }
+
 
 }

@@ -5,7 +5,8 @@ import com.abhishek.workos.auth.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import com.abhishek.workos.auth.dto.RegisterRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import com.abhishek.workos.auth.dto.LoginRequest;
+import java.util.Optional;
 
 
 @Service // to notify spring this is service class
@@ -14,7 +15,8 @@ public class UserService {
         private final UserRepository userRepository;
         private final BCryptPasswordEncoder passwordEncoder;
 
-        public UserService(UserRepository userRepository,BCryptPasswordEncoder passwordEncoder) {
+        public UserService(UserRepository userRepository,
+                           BCryptPasswordEncoder passwordEncoder) {
 
             this.userRepository = userRepository;
             this.passwordEncoder = passwordEncoder;
@@ -43,6 +45,27 @@ public class UserService {
             userRepository.save(user);
             return "User Registred";
         }
+
+        public String login(LoginRequest request) {
+
+            Optional<User> optionalUser =
+                    userRepository.findByEmail(request.getEmail());
+    
+            if (optionalUser.isEmpty()) {
+                return "Invalid Email or Password";
+            }
+
+            User user = optionalUser.get();
+
+            if (!passwordEncoder.matches(
+                    request.getPassword(),
+                    user.getPassword())) {
+
+                return "Invalid Email or Password";
+            }
+
+        return "Login Successful";
+    }
 
 
 }

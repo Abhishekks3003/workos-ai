@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import java.util.List;
+import com.abhishek.workos.auth.dto.LoginRequest;
 
 @RestController
 public class AuthController {
@@ -31,5 +32,11 @@ public class AuthController {
 
         return userService.register(request); //controller method run
 
+    }
+    @PostMapping("/api/auth/login")
+    public String login(
+            @Valid @RequestBody LoginRequest request) {
+
+        return userService.login(request);
     }
 }

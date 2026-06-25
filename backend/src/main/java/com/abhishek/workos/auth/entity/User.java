@@ -21,10 +21,6 @@ public class User {
 
     private String password;
 
-    public User() {
-        System.out.println("Constructor Called");
-    }
-
     public void setId(Long id) {
         this.id = id;
     }

@@ -4,6 +4,7 @@ import java.util.List;
 import com.abhishek.workos.auth.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import com.abhishek.workos.auth.dto.RegisterRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 
@@ -11,11 +12,13 @@ import com.abhishek.workos.auth.dto.RegisterRequest;
 public class UserService {
 
         private final UserRepository userRepository;
-        public UserService(UserRepository userRepository) {
+        private final BCryptPasswordEncoder passwordEncoder;
+
+        public UserService(UserRepository userRepository,BCryptPasswordEncoder passwordEncoder) {
 
             this.userRepository = userRepository;
+            this.passwordEncoder = passwordEncoder;
 
-            System.out.println("UserService Bean Created");
             System.out.println(userRepository);
         }
         public List<User> getAllUsers() {
@@ -33,7 +36,9 @@ public class UserService {
 
             user.setName(request.getName());
             user.setEmail(request.getEmail());
-            user.setPassword(request.getPassword());
+            user.setPassword(
+                    passwordEncoder.encode(request.getPassword())
+            );
 
             userRepository.save(user);
             return "User Registred";

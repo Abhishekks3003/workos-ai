@@ -1,6 +1,6 @@
-package com.abhishek.workos.auth.repository;
+package com.dev.workos.auth.repository;
 import java.util.Optional;
-import com.abhishek.workos.auth.entity.User;
+import com.dev.workos.auth.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository

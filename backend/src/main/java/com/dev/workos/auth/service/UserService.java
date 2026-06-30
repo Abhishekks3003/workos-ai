@@ -1,28 +1,32 @@
-package com.abhishek.workos.auth.service;
-import com.abhishek.workos.auth.entity.User;
+package com.dev.workos.auth.service;
+import com.dev.workos.auth.entity.User;
 import java.util.List;
-import com.abhishek.workos.auth.repository.UserRepository;
+import com.dev.workos.auth.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import com.abhishek.workos.auth.dto.RegisterRequest;
+import com.dev.workos.auth.dto.RegisterRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import com.abhishek.workos.auth.dto.LoginRequest;
+import com.dev.workos.auth.dto.LoginRequest;
 import java.util.Optional;
+import com.dev.workos.auth.jwt.JwtService;
 
 
 @Service // to notify spring this is service class
 public class UserService {
 
-        private final UserRepository userRepository;
+        private final UserRepository userRepository;//field
         private final BCryptPasswordEncoder passwordEncoder;
+        private final JwtService jwtService;
 
-        public UserService(UserRepository userRepository,
-                           BCryptPasswordEncoder passwordEncoder) {
-
+        public UserService(
+                UserRepository userRepository,
+                BCryptPasswordEncoder passwordEncoder,
+                JwtService jwtService
+        ) {
             this.userRepository = userRepository;
             this.passwordEncoder = passwordEncoder;
-
-            System.out.println(userRepository);
+            this.jwtService = jwtService;
         }
+
         public List<User> getAllUsers() {
 
             return userRepository.findAll();
@@ -64,8 +68,9 @@ public class UserService {
                 return "Invalid Email or Password";
             }
 
-        return "Login Successful";
-    }
-
+        //return "Login Successful";
+            String token = jwtService.generateToken(user);
+            return token;
+        }
 
 }

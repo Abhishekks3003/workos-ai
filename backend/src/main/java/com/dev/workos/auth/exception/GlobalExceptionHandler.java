@@ -1,4 +1,4 @@
-package com.abhishek.workos.auth.exception;
+package com.dev.workos.auth.exception;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

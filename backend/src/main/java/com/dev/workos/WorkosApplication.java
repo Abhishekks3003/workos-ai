@@ -1,6 +1,6 @@
-package com.abhishek.workos;
+package com.dev.workos;
 
-import com.abhishek.workos.auth.service.UserService;
+import com.dev.workos.auth.service.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;

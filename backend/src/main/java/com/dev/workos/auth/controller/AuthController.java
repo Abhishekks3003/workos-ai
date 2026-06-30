@@ -1,14 +1,14 @@
-package com.abhishek.workos.auth.controller;
-import com.abhishek.workos.auth.dto.RegisterRequest;
+package com.dev.workos.auth.controller;
+import com.dev.workos.auth.dto.RegisterRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.abhishek.workos.auth.entity.User;
-import com.abhishek.workos.auth.service.UserService;
+import com.dev.workos.auth.entity.User;
+import com.dev.workos.auth.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import java.util.List;
-import com.abhishek.workos.auth.dto.LoginRequest;
+import com.dev.workos.auth.dto.LoginRequest;
 
 @RestController
 public class AuthController {

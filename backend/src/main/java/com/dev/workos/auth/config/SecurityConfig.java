@@ -1,4 +1,4 @@
-package com.abhishek.workos.auth.config;
+package com.dev.workos.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

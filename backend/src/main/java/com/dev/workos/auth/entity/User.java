@@ -1,4 +1,4 @@
-package com.abhishek.workos.auth.entity;
+package com.dev.workos.auth.entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Entity;
